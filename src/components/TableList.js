@@ -5,26 +5,35 @@ function TableList() {
 
     const { items } = useContext(FormContext);
 
-    let total = Number(items[0].total);
-    let interestRate = Number(items[0].interest) / 100;
-    let terms = Number(items[0].terms);
+    let total = parseFloat(items[0].total);
+    let interestRate = parseFloat(items[0].interest) / 100;
+    let terms = parseFloat(items[0].terms);
 
-    let interest = total * interestRate;
+    let interest = (total * interestRate);
+
+
 
     let monthlyPayment = total * [(interestRate * Math.pow((1 + interestRate), terms)) / (Math.pow((1 + interestRate), terms) - 1)];
 
     const rows = [];
+
+    let remainedMoney = total - monthlyPayment + interest;
+    let mainMoney = monthlyPayment - interest
     for (let i = 1; i <= terms; i++) {
-        
-        rows.push(
-            <tr>
-                <td>{i}</td>
-                <td>{monthlyPayment}</td>
-                <td>{monthlyPayment - interest}</td>
-                <td>{total - monthlyPayment - interest}</td>
-                <td>{interest}</td>
-            </tr>
-        )
+        rows.push
+            (
+                <tr>
+                    <td>{i}</td>
+                    <td>{monthlyPayment.toFixed(2)}</td>
+                    <td>{mainMoney.toFixed(2)}</td>
+                    <td>{remainedMoney.toFixed(2)}</td>
+                    <td>{interest.toFixed(2)}</td>
+                </tr>
+            )
+
+        interest = remainedMoney * interestRate;
+        mainMoney = monthlyPayment - interest;
+        remainedMoney = remainedMoney - mainMoney;
 
     }
 

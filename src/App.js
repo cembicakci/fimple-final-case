@@ -7,12 +7,15 @@ import { useContext } from 'react';
 
 function App() {
 
-  const { items } = useContext(FormContext)
+  const { items } = useContext(FormContext);
+
+  console.log(items)
 
   return (
     <div className="App">
       <Header />
-      {items.length > 0 &&
+
+      {items[0] &&
         <TableList />
       }
     </div>

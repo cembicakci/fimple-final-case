@@ -12,7 +12,8 @@ export const FormProvider = (props) => {
 
     const values = {
         calculate,
-        items
+        items,
+        setItems
     }
 
     return (

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import FormContext from '../context/FormContext'
+import TableRow from './TableRow';
 
 function TableList() {
 
@@ -11,24 +12,15 @@ function TableList() {
 
     let interest = (total * interestRate);
 
-
-
     let monthlyPayment = total * [(interestRate * Math.pow((1 + interestRate), terms)) / (Math.pow((1 + interestRate), terms) - 1)];
 
     const rows = [];
-
     let remainedMoney = total - monthlyPayment + interest;
     let mainMoney = monthlyPayment - interest
     for (let i = 1; i <= terms; i++) {
         rows.push
             (
-                <tr>
-                    <td>{i}</td>
-                    <td>{monthlyPayment.toFixed(2)}</td>
-                    <td>{mainMoney.toFixed(2)}</td>
-                    <td>{remainedMoney.toFixed(2)}</td>
-                    <td>{interest.toFixed(2)}</td>
-                </tr>
+                <TableRow key={i} i={i} monthlyPayment={monthlyPayment} mainMoney={mainMoney} remainedMoney={remainedMoney} interest={interest}/>
             )
 
         interest = remainedMoney * interestRate;

@@ -1,18 +1,26 @@
 import React, { useContext, useState } from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
 import FormContext from '../context/FormContext';
+import { Col } from 'react-bootstrap';
 
 
 function Header() {
 
     const { calculate } = useContext(FormContext);
+    const { items } = useContext(FormContext);
+    console.log(items);
     const { setItems } = useContext(FormContext);
+
+    const [select, setSelect] = useState();
+    
 
     const [values, setValues] = useState({
         total: '',
         interest: '',
-        terms: ''
+        terms: '',
+        select: ''
     });
 
     function onInputChange(e) {
@@ -22,19 +30,20 @@ function Header() {
 
     const { total, interest, terms } = values;
 
+
     function handleSubmit(e) {
         e.preventDefault();
 
-        calculate(total, interest, terms);
+        calculate(total, interest, terms, select);
 
         setItems([
             {
                 total: total,
                 interest: interest,
-                terms: terms
+                terms: terms,
+                select: select
             }
         ])
-
     }
 
     return (
@@ -51,7 +60,20 @@ function Header() {
 
             <Form.Group className='col-md-3 mx-3'>
                 <Form.Label>Taksit Sayısı:</Form.Label>
-                <Form.Control type="number" name='terms' value={values.terms} onChange={(e) => onInputChange(e)} />
+                <Row>
+                    <Col>
+                        <Form.Control type="number" name='terms' value={values.terms} onChange={(e) => onInputChange(e)} />
+                    </Col>
+
+                    <Col>
+                        <Form.Select aria-label="Default select example" onChange={(e) => setSelect(e.target.value) }>
+                            <option>Seçiniz</option>
+                            <option value="monthly">Aylık</option>
+                            <option value="weekly">Haftalık</option>
+                            <option value="yearly">Yıllık</option>
+                        </Form.Select>
+                    </Col>
+                </Row>
             </Form.Group>
 
             <Button variant="success" type="submit" className='my-4'>Calculate</Button>

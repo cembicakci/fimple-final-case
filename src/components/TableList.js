@@ -13,11 +13,11 @@ function TableList() {
 
     let interest = (total * interestRate);
 
-    let payment;
+    let payment = total * [(interestRate * Math.pow((1 + interestRate), terms)) / (Math.pow((1 + interestRate), terms) - 1)];
 
-    if(items[0].select === 'monthly'){
-        payment = total * [(interestRate * Math.pow((1 + interestRate), terms)) / (Math.pow((1 + interestRate), terms) - 1)];
-    }
+    // if (items[0].select === 'monthly') {
+    //     payment = total * [(interestRate * Math.pow((1 + interestRate), terms)) / (Math.pow((1 + interestRate), terms) - 1)];
+    // }
 
     // } else if(items[0].select === 'weekly'){
     //     payment = total * [(interestRate * Math.pow((1 + interestRate), terms)) / (Math.pow((1 + interestRate), terms) - 1)];
@@ -25,20 +25,20 @@ function TableList() {
 
 
     const rows = [];
-    interestRate = interestRate;
-    let remainedMoney = total - payment + interest;
-    let mainMoney = payment - interest;
     let kkdf = interest * 0.15;
     let bsmv = interest * 0.10;
+
+    let remainedMoney = total - payment + interest;
+    let mainMoney = payment - (interest + kkdf + bsmv);
 
     for (let i = 1; i <= terms; i++) {
         rows.push
             (
-                <TableRow key={i} i={i} payment={payment} mainMoney={mainMoney} remainedMoney={remainedMoney} interest={interest} kkdf={kkdf} bsmv={bsmv}/>
+                <TableRow key={i} i={i} payment={payment} mainMoney={mainMoney} remainedMoney={remainedMoney} interest={interest} kkdf={kkdf} bsmv={bsmv} />
             )
 
         interest = remainedMoney * interestRate;
-        mainMoney = payment - interest;
+        mainMoney = payment - (interest + kkdf + bsmv);
         remainedMoney = remainedMoney - mainMoney;
 
         kkdf = interest * 0.15;

@@ -7,9 +7,9 @@ function TableList() {
     const { items } = useContext(FormContext);
 
 
-    let total = parseFloat(items[0].total);
-    let interestRate = parseFloat(items[0].interest) / 100;
-    let terms = parseFloat(items[0].terms);
+    let total = parseFloat(items.total);
+    let interestRate = parseFloat(items.interest) / 100;
+    let terms = parseFloat(items.terms);
 
     let interest = (total * interestRate);
 

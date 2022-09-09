@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import FormContext from '../context/FormContext';
 import { Col } from 'react-bootstrap';
 import '../App.css'
+import Input from './Input';
 
 function Header() {
 
@@ -30,7 +31,6 @@ function Header() {
     function onInputChange(e) {
         e.preventDefault();
         setValues({ ...values, [e.target.name]: e.target.value })
-        console.log(e.target.value)
     }
 
     const { total, interest, terms } = values;
@@ -42,32 +42,25 @@ function Header() {
 
         console.log(values);
 
-        if (values.terms === '') {
-            termsRef.current.focus();
-        }
+        // if (values.terms === '') {
+        //     termsRef.current.alertHi();
+        // }
 
 
-        if (values.interest === '') {
-            interestRef.current.focus();
-        }
+        // if (values.interest === '') {
+        //     interestRef.current.focus();
+        // }
 
-        if (values.total === '') {
-            totalRef.current.focus();
-        }
+        // if (values.total === '') {
+        //     totalRef.current.focus();
+        // }
 
-
-        if (values.total !== '' && values.interest !== '' && values.terms !== '') {
-            setItems([
-                {
-                    total: total,
-                    interest: interest,
-                    terms: terms,
-                    select: select
-                }
-            ])
-
+        if( values.terms === '' || values.interest === '' || values.total === '') {
+            totalRef.current.alertHi()
+        }else{
             calculate(total, interest, terms, select);
         }
+
     }
 
     return (
@@ -75,20 +68,23 @@ function Header() {
             <Form onSubmit={handleSubmit} className={'d-flex flex-column align-items-center justify-content-center '}>
                 <Form.Group className='col-md-3 mx-3'>
                     <Form.Label>Kredi Tutarı(Ana Para):</Form.Label>
-                    <Form.Control type="number" name='total' value={values.total} onChange={(e) => onInputChange(e)} ref={totalRef} />
+                    <Input type="number" name='total' value={values.total} ref={totalRef} handleChange={onInputChange}/>
+                    {/* <Form.Control  type="number" name='total' value={values.total} onChange={(e) => onInputChange(e)} ref={totalRef} /> */}
 
                 </Form.Group>
 
                 <Form.Group className='col-md-3 mx-3'>
                     <Form.Label>Faiz Oranı(%):</Form.Label>
-                    <Form.Control type="number" name='interest' value={values.interest} onChange={(e) => onInputChange(e)} ref={interestRef} />
+                    <Input type="number" name='interest' value={values.interest} ref={interestRef} handleChange={onInputChange}/>
+                    {/* <Form.Control type="number" name='interest' value={values.interest} onChange={(e) => onInputChange(e)} ref={interestRef} /> */}
                 </Form.Group>
 
                 <Form.Group className='col-md-3 mx-3'>
                     <Form.Label>Taksit Sayısı:</Form.Label>
                     <Row>
                         <Col>
-                            <Form.Control type="number" name='terms' value={values.terms} onChange={(e) => onInputChange(e)} ref={termsRef} />
+                            <Input type="number" name='terms' value={values.terms} ref={termsRef} handleChange={onInputChange}/>
+                            {/* <Form.Control type="number" name='terms' value={values.terms} onChange={(e) => onInputChange(e)} ref={termsRef} /> */}
                         </Col>
 
                         <Col>

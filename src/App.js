@@ -15,8 +15,8 @@ function App() {
     <div className="App">
       <Header />
 
-      {items[0] &&
-        <TableList />
+      {items.total &&
+        <TableList /> 
       }
     </div>
   );

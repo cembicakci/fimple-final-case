@@ -7,7 +7,7 @@ export const FormProvider = (props) => {
     const [items, setItems] = useState([]);
    
     const calculate = (total, interest, terms, select) => {
-        setItems([...items, { total, interest, terms, select }])
+        setItems({ total, interest, terms, select })
 
     }
 

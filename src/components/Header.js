@@ -6,8 +6,13 @@ import FormContext from '../context/FormContext';
 import { Col } from 'react-bootstrap';
 import '../App.css'
 import Input from './Input';
+import ThemeContext from '../context/ThemeContext';
 
 function Header() {
+
+    const { darkMode } = useContext(ThemeContext);
+    const { setDarkMode } = useContext(ThemeContext);
+
 
     const totalRef = useRef();
     const interestRef = useRef();
@@ -42,9 +47,9 @@ function Header() {
 
         console.log(values);
 
-        if( values.terms === '' || values.interest === '' || values.total === '') {
+        if (values.terms === '' || values.interest === '' || values.total === '') {
             totalRef.current.alertError()
-        }else{
+        } else {
             calculate(total, interest, terms, select);
         }
 
@@ -55,13 +60,13 @@ function Header() {
             <Form onSubmit={handleSubmit} className={'d-flex flex-column align-items-center justify-content-center '}>
                 <Form.Group className='col-md-3 mx-3'>
                     <Form.Label>Kredi Tutarı(Ana Para):</Form.Label>
-                    <Input type="number" name='total' value={values.total} ref={totalRef} handleChange={onInputChange}/>
+                    <Input type="number" name='total' value={values.total} ref={totalRef} handleChange={onInputChange} />
 
                 </Form.Group>
 
                 <Form.Group className='col-md-3 mx-3'>
                     <Form.Label>Faiz Oranı(%):</Form.Label>
-                    <Input type="number" name='interest' value={values.interest} ref={interestRef} handleChange={onInputChange}/>
+                    <Input type="number" name='interest' value={values.interest} ref={interestRef} handleChange={onInputChange} />
 
                 </Form.Group>
 
@@ -69,7 +74,7 @@ function Header() {
                     <Form.Label>Taksit Sayısı:</Form.Label>
                     <Row>
                         <Col>
-                            <Input type="number" name='terms' value={values.terms} ref={termsRef} handleChange={onInputChange}/>
+                            <Input type="number" name='terms' value={values.terms} ref={termsRef} handleChange={onInputChange} />
 
                         </Col>
 
@@ -84,10 +89,12 @@ function Header() {
                     </Row>
                 </Form.Group>
 
-                <Button variant="success" type="submit" className='my-4' onClick={() => {}}>Calculate</Button>
+                <Button variant="success" type="submit" className='my-4' onClick={() => { }}>Calculate</Button>
             </Form>
 
-            <button type="submit" className='darkMode' >Dark Mode</button>
+            <button type="submit" className='darkMode' onClick={() => setDarkMode(!darkMode)}>
+                {darkMode ? 'Light Mode' : ' Dark Mode'}
+            </button>
         </div>
     )
 }

@@ -1,10 +1,15 @@
 import React, { useContext, useRef } from 'react'
 import FormContext from '../context/FormContext'
+import ThemeContext from '../context/ThemeContext'
 import TableRow from './TableRow';
 
 function TableList() {
 
     const { items } = useContext(FormContext);
+    const { themes } = useContext(ThemeContext);
+    const { darkMode } = useContext(ThemeContext);
+
+    console.log(darkMode, themes)
 
 
     let total = parseFloat(items.total);
@@ -49,13 +54,13 @@ function TableList() {
 
     return (
         <div>
-            <div className="row">
+            <div className={`${darkMode ? '' : 'active'}`}>
                 <div className="col-sm-6">
                     <h2>Geri Ödeme Planı Tablosu</h2>
                 </div>
             </div>
 
-            <table className='table table-striped table-hover'>
+            <table className={`table table-striped table-hover`} style={darkMode ? themes.dark : themes.light}>
                 <thead>
                     <tr>
                         <th>Taksit No</th>

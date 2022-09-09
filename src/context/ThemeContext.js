@@ -4,10 +4,14 @@ const ThemeContext = createContext();
 
 export const ThemeProvider = (props) => {
 
+    const [darkMode, setDarkMode] = useState(true);
+
+
+
     const themes = {
         dark: {
             color: 'white',  
-            background: 'black'
+            background: 'black',
         },
         light: {
             color: 'black',
@@ -15,9 +19,11 @@ export const ThemeProvider = (props) => {
         }
     }
 
-    
+
     const values = {
-        themes
+        themes,
+        darkMode,
+        setDarkMode
     }
 
     return (

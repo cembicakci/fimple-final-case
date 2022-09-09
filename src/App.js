@@ -4,18 +4,19 @@ import './App.css';
 
 import FormContext from './context/FormContext';
 import ThemeContext from './context/ThemeContext';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 function App() {
 
   const { items } = useContext(FormContext);
+  const { darkMode } = useContext(ThemeContext);
   const { themes } = useContext(ThemeContext);
 
-  console.log(themes)
-  console.log(items)
+  console.log(darkMode)
+
 
   return (
-    <div className="App">
+    <div className={`App`} style={darkMode ? themes.dark : themes.light}>
       <Header />
 
       {items.total &&

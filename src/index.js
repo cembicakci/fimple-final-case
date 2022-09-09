@@ -5,14 +5,16 @@ import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import { FormProvider } from './context/FormContext';
+import { ThemeProvider } from './context/ThemeContext';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <FormProvider>
-
-      <App />
-
-    </FormProvider>
+    <ThemeProvider>
+      <FormProvider>
+        <App />
+      </FormProvider>
+    </ThemeProvider>
   </React.StrictMode>
 );

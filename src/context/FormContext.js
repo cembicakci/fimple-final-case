@@ -8,9 +8,8 @@ export const FormProvider = (props) => {
    
     const calculate = (total, interest, terms, select) => {
         setItems({ total, interest, terms, select })
-
     }
-
+    
     const values = {
         calculate,
         items,

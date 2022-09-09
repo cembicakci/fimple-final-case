@@ -42,21 +42,8 @@ function Header() {
 
         console.log(values);
 
-        // if (values.terms === '') {
-        //     termsRef.current.alertHi();
-        // }
-
-
-        // if (values.interest === '') {
-        //     interestRef.current.focus();
-        // }
-
-        // if (values.total === '') {
-        //     totalRef.current.focus();
-        // }
-
         if( values.terms === '' || values.interest === '' || values.total === '') {
-            totalRef.current.alertHi()
+            totalRef.current.alertError()
         }else{
             calculate(total, interest, terms, select);
         }
@@ -69,14 +56,13 @@ function Header() {
                 <Form.Group className='col-md-3 mx-3'>
                     <Form.Label>Kredi Tutarı(Ana Para):</Form.Label>
                     <Input type="number" name='total' value={values.total} ref={totalRef} handleChange={onInputChange}/>
-                    {/* <Form.Control  type="number" name='total' value={values.total} onChange={(e) => onInputChange(e)} ref={totalRef} /> */}
 
                 </Form.Group>
 
                 <Form.Group className='col-md-3 mx-3'>
                     <Form.Label>Faiz Oranı(%):</Form.Label>
                     <Input type="number" name='interest' value={values.interest} ref={interestRef} handleChange={onInputChange}/>
-                    {/* <Form.Control type="number" name='interest' value={values.interest} onChange={(e) => onInputChange(e)} ref={interestRef} /> */}
+
                 </Form.Group>
 
                 <Form.Group className='col-md-3 mx-3'>
@@ -84,7 +70,7 @@ function Header() {
                     <Row>
                         <Col>
                             <Input type="number" name='terms' value={values.terms} ref={termsRef} handleChange={onInputChange}/>
-                            {/* <Form.Control type="number" name='terms' value={values.terms} onChange={(e) => onInputChange(e)} ref={termsRef} /> */}
+
                         </Col>
 
                         <Col>

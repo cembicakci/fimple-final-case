@@ -20,7 +20,8 @@ function Header() {
 
     const { calculate } = useContext(FormContext);
 
-    const [select, setSelect] = useState();
+    const [select, setSelect] = useState('monthly');
+    console.log(select)
 
 
     const [values, setValues] = useState({
@@ -61,7 +62,7 @@ function Header() {
 
                 <Form.Group className='col-md-3 mx-3'>
                     <Form.Label>Faiz Oranı(%):</Form.Label>
-                    <Input type="number" name='interest' value={values.interest} ref={interestRef} handleChange={onInputChange} />
+                    <Input type="text" name='interest' value={values.interest} ref={interestRef} handleChange={onInputChange} />
 
                 </Form.Group>
 
@@ -75,7 +76,6 @@ function Header() {
 
                         <Col>
                             <Form.Select aria-label="Default select example" onChange={(e) => setSelect(e.target.value)}>
-                                <option>Seçiniz</option>
                                 <option value="monthly">Aylık</option>
                                 <option value="weekly">Haftalık</option>
                                 <option value="yearly">Yıllık</option>

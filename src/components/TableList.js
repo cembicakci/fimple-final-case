@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext } from 'react'
 import FormContext from '../context/FormContext'
 import ThemeContext from '../context/ThemeContext'
 import TableRow from './TableRow';
@@ -9,8 +9,7 @@ function TableList() {
     const { themes } = useContext(ThemeContext);
     const { darkMode } = useContext(ThemeContext);
 
-    console.log(darkMode, themes)
-
+    console.log(items)
 
     let total = parseFloat(items.total);
     let interestRate = parseFloat(items.interest) / 100;
@@ -18,15 +17,15 @@ function TableList() {
 
     let interest = (total * interestRate);
 
-    let payment = total * [(interestRate * Math.pow((1 + interestRate), terms)) / (Math.pow((1 + interestRate), terms) - 1)];
+    let payment;
 
-    // if (items[0].select === 'monthly') {
-    //     payment = total * [(interestRate * Math.pow((1 + interestRate), terms)) / (Math.pow((1 + interestRate), terms) - 1)];
-    // }
-
-    // } else if(items[0].select === 'weekly'){
-    //     payment = total * [(interestRate * Math.pow((1 + interestRate), terms)) / (Math.pow((1 + interestRate), terms) - 1)];
-    // }
+    if (items.select === 'monthly') {
+        payment = total * [(interestRate * Math.pow((1 + interestRate), terms)) / (Math.pow((1 + interestRate), terms) - 1)];
+    } else if (items.select === 'weekly') {
+        payment = total * [(interestRate * 4 * Math.pow((1 + interestRate * 4), terms)) / (Math.pow((1 + interestRate * 4), terms) - 1)];
+    } else if (items.select === 'yearly') {
+        payment = total * [(interestRate * 12 * Math.pow((1 + interestRate * 12), terms)) / (Math.pow((1 + interestRate * 12), terms) - 1)];
+    }
 
 
     const rows = [];

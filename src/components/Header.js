@@ -1,4 +1,4 @@
-import React, { useContext, useImperativeHandle, useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
@@ -19,9 +19,6 @@ function Header() {
     const termsRef = useRef();
 
     const { calculate } = useContext(FormContext);
-    const { items } = useContext(FormContext);
-    const { setItems } = useContext(FormContext);
-
 
     const [select, setSelect] = useState();
 
@@ -44,8 +41,6 @@ function Header() {
 
     function handleSubmit(e) {
         e.preventDefault();
-
-        console.log(values);
 
         if (values.terms === '' || values.interest === '' || values.total === '') {
             totalRef.current.alertError()

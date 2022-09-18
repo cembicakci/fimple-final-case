@@ -21,8 +21,6 @@ function Header() {
     const { calculate } = useContext(FormContext);
 
     const [select, setSelect] = useState('monthly');
-    console.log(select)
-
 
     const [values, setValues] = useState({
         total: '',

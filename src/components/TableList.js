@@ -12,13 +12,14 @@ function TableList() {
     console.log(items)
 
     let total = parseFloat(items.total);
-    let interestRate = parseFloat(items.interest) / 100;
+    let interestRate = parseFloat(items.interest) / 100; //faizin yüzdelik değeri alınır.
     let terms = parseFloat(items.terms);
 
     let interest = (total * interestRate);
 
     let payment;
 
+    //selection a göre payment hesaplanır.
     if (items.select === 'monthly') {
         payment = total * [(interestRate * Math.pow((1 + interestRate), terms)) / (Math.pow((1 + interestRate), terms) - 1)];
     } else if (items.select === 'weekly') {
@@ -28,7 +29,7 @@ function TableList() {
     }
 
 
-    const rows = [];
+    const rows = []; //for döngüsünden gelen her bir TableRow component'i row object'ine yazdırılır
     let kkdf = interest * 0.15;
     let bsmv = interest * 0.05;
 

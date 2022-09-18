@@ -52,38 +52,40 @@ function TableList() {
 
 
     return (
-        <div>
-            <div className={`${darkMode ? '' : 'active'}`}>
+        <div className={`tablelist ${darkMode ? 'active' : ''}`}>
+            <div>
                 <div className="col-sm-6">
                     <h2>Geri Ödeme Planı Tablosu</h2>
                 </div>
             </div>
 
-            <table className={`table table-striped table-hover`} style={darkMode ? themes.dark : themes.light}>
-                <thead>
-                    <tr>
-                        <th>Taksit No</th>
-                        <th>Taksit Tutarı</th>
-                        <th>Ana Para</th>
-                        <th>Kalan Ana Para</th>
-                        <th>Kar Tutarı</th>
-                        <th>KKDF</th>
-                        <th>BSMV</th>
-                    </tr>
-                </thead>
+            <div>
+                <table className={`table table-striped table-hover`} style={darkMode ? themes.dark : themes.light}>
+                    <thead>
+                        <tr>
+                            <th>Taksit No</th>
+                            <th>Taksit Tutarı</th>
+                            <th>Ana Para</th>
+                            <th>Kalan Ana Para</th>
+                            <th>Kar Tutarı</th>
+                            <th>KKDF</th>
+                            <th>BSMV</th>
+                        </tr>
+                    </thead>
 
-                <tbody>
-                    {rows}
-                </tbody>
+                    <tbody>
+                        {rows}
+                    </tbody>
 
-                <tbody>
-                    <tr>
-                        <th>Toplam:</th>
-                        <th>{(payment * terms).toFixed(2)} TL</th>
-                        <th>{(total).toFixed(2)} TL</th>
-                    </tr>
-                </tbody>
-            </table>
+                    <tbody>
+                        <tr>
+                            <th>Toplam:</th>
+                            <th>{(payment * terms).toFixed(2)} TL</th>
+                            <th>{(total).toFixed(2)} TL</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     )
 }

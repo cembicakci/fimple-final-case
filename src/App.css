@@ -12,6 +12,13 @@
 
 }
 
-.row.active .table-striped>tbody>tr:nth-of-type(odd)>* {
+.tablelist.active .table-striped>tbody>tr:nth-of-type(odd)>* {
   color: white;
+}
+
+@media only screen and (max-width: 600px) {
+  .form-control {
+    width: 80%!important;
+  }
+
 }

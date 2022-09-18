@@ -88,7 +88,7 @@ function Header() {
             </Form>
 
             <button type="submit" className='darkMode' onClick={() => setDarkMode(!darkMode)}>
-                {darkMode ? 'Light Mode' : ' Dark Mode'}
+                {darkMode ? 'Light' : ' Dark'}
             </button>
         </div>
     )

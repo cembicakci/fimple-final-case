@@ -30,7 +30,7 @@ function TableList() {
 
     const rows = [];
     let kkdf = interest * 0.15;
-    let bsmv = interest * 0.10;
+    let bsmv = interest * 0.05;
 
     let remainedMoney = total - payment + interest;
     let mainMoney = payment - (interest + kkdf + bsmv);
@@ -46,7 +46,7 @@ function TableList() {
         remainedMoney = remainedMoney - mainMoney;
 
         kkdf = interest * 0.15;
-        bsmv = interest * 0.10;
+        bsmv = interest * 0.05;
 
     }
 

@@ -13,7 +13,7 @@ function Header() {
     const { darkMode } = useContext(ThemeContext);
     const { setDarkMode } = useContext(ThemeContext);
 
-
+    //useRef, DOM elemanlarına ulaşmamızı sağlar.
     const totalRef = useRef();
     const interestRef = useRef();
     const termsRef = useRef();
@@ -44,7 +44,7 @@ function Header() {
         e.preventDefault();
 
         if (values.terms === '' || values.interest === '' || values.total === '') {
-            totalRef.current.alertError()
+            totalRef.current.alertError() //useImperativeHandle daki alert fonksiyonunu çalışırır.
         } else {
             calculate(total, interest, terms, select);
         }
@@ -84,11 +84,11 @@ function Header() {
                     </Row>
                 </Form.Group>
 
-                <Button variant="success" type="submit" className='my-4' onClick={() => { }}>Calculate</Button>
+                <Button variant="success" type="submit" className='my-4' onClick={() => { }}>Hesapla</Button>
             </Form>
 
             <button type="submit" className='darkMode' onClick={() => setDarkMode(!darkMode)}>
-                {darkMode ? 'Light' : ' Dark'}
+                {darkMode ? 'Açık' : 'Koyu'}
             </button>
         </div>
     )

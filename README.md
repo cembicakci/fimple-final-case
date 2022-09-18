@@ -16,7 +16,7 @@
 [Daha Fazla Bilgi İçin](https://www.kredimodeli.com/makaleler/KrediHesaplama#:~:text=Krediyi%20ald%C4%B1ktan%20bir%20ay%20sonra,92%2C12%20TL%20borcunuz%20kal%C4%B1r.)
 
 
-## Usage
+## Usage
 ```
 npm install
 npm start
